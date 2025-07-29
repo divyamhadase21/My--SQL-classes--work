@@ -1,1 +1,1347 @@
+-- ----------------------------------- Database Queries --------------------------------------
+-- Create SBI Bank database
+CREATE DATABASE SBI_Bank;
+
+-- Select the database for use
+USE SBI_Bank;
+
+-- ---------------------------------- Table Queries -----------------------------------------
+
+-- Table-1 : Customers
+
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY,
+    FullName VARCHAR(100),
+    DOB DATE,
+    Gender VARCHAR(10),
+    Email VARCHAR(100),
+    Phone VARCHAR(15),
+    AadharNumber VARCHAR(16),
+    PANNumber VARCHAR(12),
+    Address TEXT,
+    BranchCode VARCHAR(10)
+);
+
+INSERT INTO Customers VALUES
+(1, 'Rahul Sharma', '1988-06-12', 'Male', 'rahul88@gmail.com', '9876543210', '123412341234', 'ABCDE1234F', 'Delhi, India', 'SBI001'),
+(2, 'Anjali Mehta', '1992-03-25', 'Female', 'anjali25@gmail.com', '9856432109', '987698769876', 'GHYTR5678G', 'Mumbai, India', 'SBI002'),
+(3, 'Amit Roy', '1985-01-10', 'Male', 'amitroy@gmail.com', '9871122334', '123456781234', 'DFGTR1234E', 'Kolkata, India', 'SBI003'),
+(4, 'Pooja Nair', '1990-09-17', 'Female', 'pooja.n@gmail.com', '9934567890', '567812341234', 'POIUY6789H', 'Chennai, India', 'SBI004'),
+(5, 'Vikram Sinha', '1982-12-04', 'Male', 'vikram.sinha@gmail.com', '9765432101', '345612341234', 'PLMNB2345J', 'Bangalore, India', 'SBI005'),
+(6, 'Riya Sen', '1994-11-30', 'Female', 'riya.sen@gmail.com', '9823456781', '876543218765', 'LKJHG8765K', 'Hyderabad, India', 'SBI006'),
+(7, 'Neeraj Das', '1987-07-23', 'Male', 'neeraj.das@gmail.com', '9812345672', '765412349876', 'MNBVC2345L', 'Ahmedabad, India', 'SBI007'),
+(8, 'Seema Agarwal', '1993-04-15', 'Female', 'seema.a@gmail.com', '9743124567', '234512347654', 'QWERT1234P', 'Surat, India', 'SBI008'),
+(9, 'Anil Kumar', '1989-08-12', 'Male', 'anil.k@gmail.com', '9687654321', '112233445566', 'ZXCVB3456M', 'Jaipur, India', 'SBI009'),
+(10, 'Sneha Das', '1991-02-22', 'Female', 'sneha.d@gmail.com', '9765123890', '667788990011', 'ASDFG5678T', 'Bhopal, India', 'SBI010'),
+(11, 'Aditya Mehra', '1990-03-11', 'Male', 'aditya.m@gmail.com', '9845000001', '123400000123', 'PQWER6789Z', 'Lucknow, India', 'SBI011'),
+(12, 'Divya Thakur', '1995-06-19', 'Female', 'divya.t@gmail.com', '9789456123', '234500000123', 'LKJHG0001A', 'Kanpur, India', 'SBI012'),
+(13, 'Manish Tiwari', '1984-05-15', 'Male', 'manish.t@gmail.com', '9876541290', '321654987000', 'ZMXNB7890D', 'Nagpur, India', 'SBI013'),
+(14, 'Priya Kaur', '1987-07-21', 'Female', 'priya.k@gmail.com', '9712314567', '654321009876', 'REWQ1234AS', 'Amritsar, India', 'SBI014'),
+(15, 'Kunal Ghosh', '1992-10-01', 'Male', 'kunal.g@gmail.com', '9834567890', '223344556677', 'IUYTRE4321Z', 'Guwahati, India', 'SBI015'),
+(16, 'Rachna Pathak', '1989-12-12', 'Female', 'rachna.p@gmail.com', '9854123987', '334455667788', 'OIUYT5678B', 'Indore, India', 'SBI016'),
+(17, 'Saurabh Jain', '1985-08-08', 'Male', 'saurabh.j@gmail.com', '9723456789', '445566778899', 'XCVBN2345U', 'Kota, India', 'SBI017'),
+(18, 'Meera Joshi', '1991-09-09', 'Female', 'meera.j@gmail.com', '9745123467', '556677889900', 'TREWQ3456N', 'Raipur, India', 'SBI018'),
+(19, 'Arun Verma', '1993-06-06', 'Male', 'arun.v@gmail.com', '9887654321', '667788990011', 'NBVCX9876P', 'Agra, India', 'SBI019'),
+(20, 'Meena Kapoor', '1991-08-09', 'Female', 'meenak@gmail.com', '9945362819', '673498761234', 'FHTRE7865J', 'Pune, India', 'SBI020');
+
+-- Display all customers
+SELECT * FROM Customers;
+
+-- Delete all customer records but keep the table structure
+TRUNCATE TABLE Customers;
+
+-- Completely remove the Customers table from the database
+DROP TABLE Customers;
+
+-- Basic DQL / SELECT / Clauses / Operators
+
+-- 1. List all customers from Delhi.
+SELECT * FROM Customers WHERE Address LIKE '%Delhi%';
+
+-- 2. Show names and email IDs of female customers.
+SELECT FullName, Email FROM Customers WHERE Gender = 'Female';
+
+-- 3. Get all customers born after 1990.
+SELECT * FROM Customers WHERE DOB > '1990-01-01';
+
+-- 4. Find customers with phone numbers starting with 98.
+SELECT * FROM Customers WHERE Phone LIKE '98%';
+
+-- 5. List all male customers ordered by DOB descending.
+SELECT * FROM Customers WHERE Gender = 'Male' ORDER BY DOB DESC;
+
+-- 6. Retrieve distinct BranchCodes.
+SELECT DISTINCT BranchCode FROM Customers;
+
+-- 7. Count customers in each branch.
+SELECT BranchCode, COUNT(*) AS CustomerCount FROM Customers GROUP BY BranchCode;
+
+-- 8. Find customers whose PANNumber ends with '5J'.
+SELECT * FROM Customers WHERE PANNumber LIKE '%5J';
+
+-- 9. Show customers whose AadharNumber has 12 digits.
+SELECT * FROM Customers WHERE LENGTH(AadharNumber) = 12;
+
+-- 10. List customers not from Mumbai or Delhi.
+SELECT * FROM Customers WHERE Address NOT LIKE '%Mumbai%' AND Address NOT LIKE '%Delhi%';
+
+-- 11 DML / UPDATE / DELETE / INSERT
+-- 11. Update email for 'Anil Kumar'.
+UPDATE Customers SET Email = 'anilkumar_updated@gmail.com' WHERE FullName = 'Anil Kumar';
+
+-- 12. Insert a new customer record.
+INSERT INTO Customers VALUES
+(21, 'Sunita Reddy', '1990-05-20', 'Female', 'sunita.r@gmail.com', '9898989898', '123456789123', 'POIUYT1234P', 'Vizag, India', 'SBI021');
+
+-- 13. Delete customers from 'Kota'.
+DELETE FROM Customers WHERE Address LIKE '%Kota%';
+
+-- 14. Change BranchCode of all customers from 'Hyderabad' to 'SBI009'.
+UPDATE Customers SET BranchCode = 'SBI009' WHERE Address LIKE '%Hyderabad%';
+
+-- 15. Insert only name and phone of a new customer (use default or NULLs).
+INSERT INTO Customers (CustomerID, FullName, Phone) VALUES (22, 'Rajiv Nanda', '9999999999');
+
+-- 16. Delete all customers whose DOB is before 1985.
+DELETE FROM Customers WHERE DOB < '1985-01-01';
+
+-- 17. Update PANNumber for customer with CustomerID = 10.
+UPDATE Customers SET PANNumber = 'UPDATED1234X' WHERE CustomerID = 10;
+
+-- 18. Increase CustomerID 1's DOB by 1 year.
+UPDATE Customers SET DOB = DATE_ADD(DOB, INTERVAL 1 YEAR) WHERE CustomerID = 1;
+
+-- 19. Set Email to NULL for customer 'Rachna Pathak'.
+UPDATE Customers SET Email = NULL WHERE FullName = 'Rachna Pathak';
+
+-- 20. Add 5 dummy customers using a single query.
+INSERT INTO Customers (CustomerID, FullName, DOB, Gender, Email, Phone, AadharNumber, PANNumber, Address, BranchCode)
+VALUES
+(23, 'Dummy One', '1990-01-01', 'Male', 'dummy1@mail.com', '9000000001', '111111111111', 'AAAAA1111A', 'City1', 'SBI022'),
+(24, 'Dummy Two', '1992-02-02', 'Female', 'dummy2@mail.com', '9000000002', '222222222222', 'BBBBB2222B', 'City2', 'SBI023'),
+(25, 'Dummy Three', '1993-03-03', 'Male', 'dummy3@mail.com', '9000000003', '333333333333', 'CCCCC3333C', 'City3', 'SBI024'),
+(26, 'Dummy Four', '1994-04-04', 'Female', 'dummy4@mail.com', '9000000004', '444444444444', 'DDDDD4444D', 'City4', 'SBI025'),
+(27, 'Dummy Five', '1995-05-05', 'Male', 'dummy5@mail.com', '9000000005', '555555555555', 'EEEEE5555E', 'City5', 'SBI026');
+
+
+-- 21–30: Constraints / Data Types / DDL
+
+-- 21. Add a UNIQUE constraint on Email.
+
+ALTER TABLE Customers ADD CONSTRAINT unique_email UNIQUE (Email);
+-- 22. Check data type of PANNumber column.
+
+SHOW COLUMNS FROM Customers LIKE 'PANNumber';
+-- 23. Add a NOT NULL constraint to Phone.
+
+ALTER TABLE Customers MODIFY Phone VARCHAR(15) NOT NULL;
+-- 24. Drop Address column.
+
+ALTER TABLE Customers DROP COLUMN Address;
+-- 25. Add a new column - AccountType (VARCHAR).
+
+ALTER TABLE Customers ADD AccountType VARCHAR(20);
+-- 26. Rename column FullName to CustomerName.
+
+ALTER TABLE Customers RENAME COLUMN FullName TO CustomerName;
+-- 27. Check structure of Customers table.
+
+DESCRIBE Customers;
+-- 28. Drop Customers table.
+
+DROP TABLE Customers;
+
+-- 29. Create a backup of Customers table.
+CREATE TABLE Customers_Backup AS SELECT * FROM Customers;
+
+-- 30. Add CHECK constraint on Gender (Male/Female only).
+ALTER TABLE Customers ADD CONSTRAINT chk_gender CHECK (Gender IN ('Male', 'Female'));
+
+-- 31–40: Joins / Subqueries / Functions
+
+-- 31. (Assume Branches table) List all customer names with their branch names.
+SELECT c.FullName, b.BranchName
+FROM Customers c
+JOIN Branches b ON c.BranchCode = b.BranchCode;
+
+-- 32. Get customer details with the latest DOB.
+SELECT * FROM Customers WHERE DOB = (SELECT MAX(DOB) FROM Customers);
+
+-- 33. Count customers using a function.
+SELECT COUNT(*) AS TotalCustomers FROM Customers;
+
+-- 34. Get average age of customers.
+SELECT AVG(YEAR(CURDATE()) - YEAR(DOB)) AS AvgAge FROM Customers;
+
+-- 35. Find customers born in the same year as 'Sneha Das'.
+SELECT * FROM Customers
+WHERE YEAR(DOB) = (
+    SELECT YEAR(DOB) FROM Customers WHERE FullName = 'Sneha Das'
+);
+
+-- 36. Get customers with same BranchCode as 'Anjali Mehta'.
+SELECT * FROM Customers
+WHERE BranchCode = (
+    SELECT BranchCode FROM Customers WHERE FullName = 'Anjali Mehta'
+);
+
+-- 37. Total male and female count.
+SELECT Gender, COUNT(*) FROM Customers GROUP BY Gender;
+
+-- 38. Find all customers whose email contains 'gmail'.
+SELECT * FROM Customers WHERE Email LIKE '%gmail%';
+
+-- 39. Length of each FullName.
+SELECT FullName, LENGTH(FullName) AS NameLength FROM Customers;
+
+-- 40. Get DOB of oldest customer.
+SELECT * FROM Customers WHERE DOB = (SELECT MIN(DOB) FROM Customers);
+
+
+-- 41–50: Triggers / Window Functions / Stored Procedures
+
+-- 41. (Trigger) Create a trigger to log any deletion in Customers.
+CREATE TRIGGER LogCustomerDeletion
+AFTER DELETE ON Customers
+FOR EACH ROW
+INSERT INTO Customer_Log (CustomerID, DeletedAt)
+VALUES (OLD.CustomerID, NOW());
+
+-- 42. (Window) Rank customers by DOB (older first).
+SELECT FullName, DOB, RANK() OVER (ORDER BY DOB ASC) AS RankByAge FROM Customers;
+
+-- 43. (Window) Show total customers per branch with row number.
+SELECT CustomerID, BranchCode, ROW_NUMBER() OVER (PARTITION BY BranchCode ORDER BY CustomerID) AS RowNum
+FROM Customers;
+
+-- 44. (Window) Find first registered customer per branch.
+SELECT * FROM (
+  SELECT *, ROW_NUMBER() OVER (PARTITION BY BranchCode ORDER BY CustomerID ASC) AS rn
+  FROM Customers
+) AS temp WHERE rn = 1;
+
+-- 45. Create stored procedure to get customer by ID.
+DELIMITER $$
+CREATE PROCEDURE GetCustomerByID(IN cust_id INT)
+BEGIN
+    SELECT * FROM Customers WHERE CustomerID = cust_id;
+END$$
+DELIMITER ;
+
+-- 46. Call stored procedure to get details for CustomerID = 5.
+CALL GetCustomerByID(5);
+
+-- 48. Show total customers with cumulative count by BranchCode.
+SELECT CustomerID, BranchCode,
+COUNT(*) OVER (PARTITION BY BranchCode ORDER BY CustomerID ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS RunningTotal
+FROM Customers;
+
+-- 49. (Subquery) List all customers older than average age.**
+SELECT * FROM Customers
+WHERE YEAR(CURDATE()) - YEAR(DOB) > (
+  SELECT AVG(YEAR(CURDATE()) - YEAR(DOB)) FROM Customers
+);
+
+-- 50. (Stored Procedure) Create a procedure to insert a new customer.
+DELIMITER $$
+CREATE PROCEDURE InsertCustomer(
+    IN cid INT, IN name VARCHAR(100), IN dob DATE, IN gender VARCHAR(10),
+    IN email VARCHAR(100), IN phone VARCHAR(15), IN aadhar VARCHAR(16),
+    IN pan VARCHAR(12), IN address TEXT, IN branch VARCHAR(10)
+)
+BEGIN
+    INSERT INTO Customers VALUES (cid, name, dob, gender, email, phone, aadhar, pan, address, branch);
+END$$
+DELIMITER ;
+
+-- Table-2: Accounts
+
+CREATE TABLE Accounts (
+    AccountID INT PRIMARY KEY,
+    CustomerID INT,
+    AccountType VARCHAR(20),
+    OpenDate DATE,
+    Balance DECIMAL(12,2),
+    IFSCCode VARCHAR(11),
+    BranchCode VARCHAR(10),
+    Status VARCHAR(10),
+    NomineeName VARCHAR(100),
+    Currency VARCHAR(5),
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+INSERT INTO Accounts VALUES
+(101, 1, 'Savings', '2020-01-15', 55000.75, 'SBIN000001', 'SBI001', 'Active', 'Reena Sharma', 'INR'),
+(102, 2, 'Current', '2019-05-22', 125000.00, 'SBIN000002', 'SBI002', 'Active', 'Vijay Mehta', 'INR'),
+(103, 3, 'Savings', '2021-11-10', 67000.00, 'SBIN000003', 'SBI003', 'Active', 'Asha Roy', 'INR'),
+(104, 4, 'Savings', '2018-07-09', 89000.00, 'SBIN000004', 'SBI004', 'Active', 'Pritam Nair', 'INR'),
+(105, 5, 'Current', '2022-01-01', 32000.00, 'SBIN000005', 'SBI005', 'Active', 'Kiran Sinha', 'INR'),
+(106, 6, 'Savings', '2020-06-15', 47000.90, 'SBIN000006', 'SBI006', 'Active', 'Aman Sen', 'INR'),
+(107, 7, 'Savings', '2021-02-25', 51000.50, 'SBIN000007', 'SBI007', 'Active', 'Sonal Das', 'INR'),
+(108, 8, 'Current', '2017-09-10', 95000.00, 'SBIN000008', 'SBI008', 'Active', 'Vivek Agarwal', 'INR'),
+(109, 9, 'Savings', '2023-04-20', 22000.00, 'SBIN000009', 'SBI009', 'Active', 'Rina Kumar', 'INR'),
+(110, 10, 'Savings', '2019-12-12', 34000.00, 'SBIN000010', 'SBI010', 'Active', 'Neeraj Das', 'INR'),
+(111, 11, 'Savings', '2021-08-12', 78000.45, 'SBIN000011', 'SBI011', 'Active', 'Priya Mehra', 'INR'),
+(112, 12, 'Current', '2022-03-19', 125000.00, 'SBIN000012', 'SBI012', 'Active', 'Ajay Thakur', 'INR'),
+(113, 13, 'Savings', '2023-01-23', 33000.00, 'SBIN000013', 'SBI013', 'Active', 'Anita Tiwari', 'INR'),
+(114, 14, 'Savings', '2020-10-14', 59000.00, 'SBIN000014', 'SBI014', 'Active', 'Karan Kaur', 'INR'),
+(115, 15, 'Current', '2021-04-18', 40500.00, 'SBIN000015', 'SBI015', 'Active', 'Deepak Ghosh', 'INR'),
+(116, 16, 'Savings', '2019-11-11', 22000.00, 'SBIN000016', 'SBI016', 'Active', 'Nidhi Pathak', 'INR'),
+(117, 17, 'Savings', '2020-05-30', 47000.50, 'SBIN000017', 'SBI017', 'Active', 'Tarun Jain', 'INR'),
+(118, 18, 'Current', '2022-06-22', 110000.00, 'SBIN000018', 'SBI018', 'Active', 'Ankit Joshi', 'INR'),
+(119, 19, 'Savings', '2023-03-03', 56000.00, 'SBIN000019', 'SBI019', 'Active', 'Radhika Verma', 'INR'),
+(120, 20, 'Savings', '2023-07-07', 43250.50, 'SBIN000020', 'SBI020', 'Active', 'Amit Kapoor', 'INR');
+
+-- Show all accounts
+SELECT * FROM Accounts;
+
+-- Delete all account records but keep the structure
+TRUNCATE TABLE Accounts;
+
+-- Completely remove the Accounts table
+DROP TABLE Accounts;
+
+
+-- 1. Create Accounts table (already done, for reference)
+CREATE TABLE Accounts (
+    AccountID INT PRIMARY KEY,
+    CustomerID INT,
+    AccountType VARCHAR(20),
+    OpenDate DATE,
+    Balance DECIMAL(12,2),
+    IFSCCode VARCHAR(11),
+    BranchCode VARCHAR(10),
+    Status VARCHAR(10),
+    NomineeName VARCHAR(100),
+    Currency VARCHAR(5),
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+-- 2. Add a new column for InterestRate
+ALTER TABLE Accounts ADD InterestRate DECIMAL(5,2);
+
+-- 3. Modify Balance datatype to store larger values
+ALTER TABLE Accounts MODIFY Balance DECIMAL(15,2);
+
+-- 4. Rename column Status to AccountStatus
+ALTER TABLE Accounts RENAME COLUMN Status TO AccountStatus;
+
+-- 5. Drop column InterestRate
+ALTER TABLE Accounts DROP COLUMN InterestRate;
+
+-- 6. Insert a new account
+INSERT INTO Accounts VALUES 
+(121, 1, 'Savings', '2024-02-10', 30000.00, 'SBIN000001', 'SBI001', 'Active', 'Riya Sharma', 'INR');
+
+-- 7. Update balance for an account
+UPDATE Accounts SET Balance = 60000.00 WHERE AccountID = 101;
+
+-- 8. Deactivate a closed account
+UPDATE Accounts SET AccountStatus = 'Inactive' WHERE AccountID = 104;
+
+-- 9. Delete an account that was created by mistake
+DELETE FROM Accounts WHERE AccountID = 121;
+
+-- 10. Add ₹1000 to all active savings accounts
+UPDATE Accounts 
+SET Balance = Balance + 1000 
+WHERE AccountType = 'Savings' AND AccountStatus = 'Active';
+
+-- 11. View all accounts
+SELECT * FROM Accounts;
+
+-- 12. List only active current accounts
+SELECT * FROM Accounts WHERE AccountType = 'Current' AND AccountStatus = 'Active';
+
+-- 13. Accounts with balance above ₹1,00,000
+SELECT * FROM Accounts WHERE Balance > 100000;
+
+-- 14. List all accounts from branch 'SBI005'
+SELECT * FROM Accounts WHERE BranchCode = 'SBI005';
+
+-- 15. Count of each account type
+SELECT AccountType, COUNT(*) AS Total FROM Accounts GROUP BY AccountType;
+
+-- 16. Check for any duplicate AccountIDs (shouldn't exist due to PK)
+SELECT AccountID, COUNT(*) FROM Accounts GROUP BY AccountID HAVING COUNT(*) > 1;
+
+-- 17. Add a UNIQUE constraint to IFSCCode + AccountID combo (composite)
+ALTER TABLE Accounts ADD CONSTRAINT unique_ifsc_account UNIQUE (IFSCCode, AccountID);
+
+-- 18. Try inserting NULL into primary key (will fail)
+-- INSERT INTO Accounts (AccountID, ...) VALUES (NULL, ...) -- Fails
+
+-- 19. Enforce AccountStatus NOT NULL
+ALTER TABLE Accounts MODIFY AccountStatus VARCHAR(10) NOT NULL;
+
+-- 20. Add CHECK to ensure Balance >= 0
+ALTER TABLE Accounts ADD CONSTRAINT chk_balance CHECK (Balance >= 0);
+
+-- 21. ORDER BY balance descending
+SELECT * FROM Accounts ORDER BY Balance DESC;
+
+-- 22. GROUP BY BranchCode
+SELECT BranchCode, COUNT(*) AS TotalAccounts FROM Accounts GROUP BY BranchCode;
+
+-- 23. HAVING clause: branches with more than 2 accounts
+SELECT BranchCode, COUNT(*) FROM Accounts GROUP BY BranchCode HAVING COUNT(*) > 2;
+
+-- 24. LIMIT top 5 accounts with highest balance
+SELECT * FROM Accounts ORDER BY Balance DESC LIMIT 5;
+
+-- 25. BETWEEN 2020 and 2022 accounts
+SELECT * FROM Accounts WHERE OpenDate BETWEEN '2020-01-01' AND '2022-12-31';
+
+-- 26. LIKE: All accounts with IFSC codes starting with 'SBIN00001'
+SELECT * FROM Accounts WHERE IFSCCode LIKE 'SBIN00001%';
+
+-- 27. IN: List accounts from selected branches
+SELECT * FROM Accounts WHERE BranchCode IN ('SBI001', 'SBI002', 'SBI003');
+
+-- 28. NOT: Accounts that are not active
+SELECT * FROM Accounts WHERE NOT AccountStatus = 'Active';
+
+-- 29. IS NULL: (assuming optional nominee)
+SELECT * FROM Accounts WHERE NomineeName IS NULL;
+
+-- 30. Logical AND: Savings accounts with high balance
+SELECT * FROM Accounts WHERE AccountType = 'Savings' AND Balance > 70000;
+
+-- 31. INNER JOIN with Customers
+SELECT a.AccountID, c.CustomerName, a.Balance 
+FROM Accounts a
+JOIN Customers c ON a.CustomerID = c.CustomerID;
+
+-- 32. LEFT JOIN with Customers
+SELECT a.*, c.CustomerName 
+FROM Accounts a
+LEFT JOIN Customers c ON a.CustomerID = c.CustomerID;
+
+-- 33. RIGHT JOIN with Customers
+SELECT a.AccountID, c.CustomerName 
+FROM Accounts a
+RIGHT JOIN Customers c ON a.CustomerID = c.CustomerID;
+
+-- 34. CROSS JOIN with Customers (cartesian product)
+SELECT a.AccountID, c.CustomerName 
+FROM Accounts a
+CROSS JOIN Customers c;
+
+-- 35. JOIN to find customers who opened accounts after 2022
+SELECT c.CustomerName, a.OpenDate
+FROM Accounts a
+JOIN Customers c ON a.CustomerID = c.CustomerID
+WHERE a.OpenDate > '2022-01-01';
+
+-- 36. UPPER case for account types
+SELECT UPPER(AccountType) FROM Accounts;
+
+-- 37. ROUND balance to nearest hundred
+SELECT AccountID, ROUND(Balance, -2) AS RoundedBalance FROM Accounts;
+
+-- 38. CONCAT customer and account info
+SELECT CONCAT('ID-', AccountID, ': ₹', Balance) AS Summary FROM Accounts;
+
+-- 39. DATEDIFF in days since account opened
+SELECT AccountID, DATEDIFF(CURDATE(), OpenDate) AS DaysActive FROM Accounts;
+
+-- 40. FORMAT balance with commas
+SELECT AccountID, FORMAT(Balance, 2) AS FormattedBalance FROM Accounts;
+
+-- 41. Accounts from branch with highest total balance
+SELECT * FROM Accounts
+WHERE BranchCode = (
+  SELECT BranchCode FROM Accounts GROUP BY BranchCode ORDER BY SUM(Balance) DESC LIMIT 1
+);
+
+-- 42. Customers with more than one account
+SELECT CustomerID FROM Accounts GROUP BY CustomerID HAVING COUNT(*) > 1;
+
+-- 43. Accounts with balance above average
+SELECT * FROM Accounts 
+WHERE Balance > (SELECT AVG(Balance) FROM Accounts);
+
+-- 44. Rank accounts by balance
+SELECT AccountID, Balance, RANK() OVER (ORDER BY Balance DESC) AS BalanceRank FROM Accounts;
+
+-- 45. Running total of balance by branch
+SELECT BranchCode, AccountID, Balance,
+SUM(Balance) OVER (PARTITION BY BranchCode ORDER BY AccountID) AS RunningBalance
+FROM Accounts;
+---
+
+-- 46. Trigger to log account deletions (requires Account_Log table)
+CREATE TRIGGER log_account_deletion
+BEFORE DELETE ON Accounts
+FOR EACH ROW
+INSERT INTO Account_Log(AccountID, DeletedOn)
+VALUES (OLD.AccountID, NOW());
+
+-- 47. Trigger to auto-capitalize AccountType on insert
+CREATE TRIGGER capitalize_account_type
+BEFORE INSERT ON Accounts
+FOR EACH ROW
+SET NEW.AccountType = UPPER(NEW.AccountType);
+
+-- 48. Procedure to fetch account by ID
+DELIMITER //
+CREATE PROCEDURE GetAccountByID(IN acc_id INT)
+BEGIN
+    SELECT * FROM Accounts WHERE AccountID = acc_id;
+END;
+//
+DELIMITER ;
+
+-- 49. Procedure to update account status
+DELIMITER //
+CREATE PROCEDURE UpdateAccountStatus(IN acc_id INT, IN new_status VARCHAR(10))
+BEGIN
+    UPDATE Accounts SET AccountStatus = new_status WHERE AccountID = acc_id;
+END;
+//
+DELIMITER ;
+
+-- 50. Procedure to transfer funds between accounts (simplified)
+DELIMITER //
+CREATE PROCEDURE TransferFunds(IN from_acc INT, IN to_acc INT, IN amt DECIMAL(10,2))
+BEGIN
+    UPDATE Accounts SET Balance = Balance - amt WHERE AccountID = from_acc;
+    UPDATE Accounts SET Balance = Balance + amt WHERE AccountID = to_acc;
+END;
+//
+DELIMITER ;
+
+
+--  Table-3: Transactions
+
+CREATE TABLE Transactions (
+    TransactionID INT PRIMARY KEY,
+    AccountID INT,
+    TransactionDate DATE,
+    Type VARCHAR(10),
+    Amount DECIMAL(10,2),
+    Description TEXT,
+    Mode VARCHAR(20),
+    Status VARCHAR(10),
+    BalanceAfter DECIMAL(12,2),
+    BranchCode VARCHAR(10),
+    FOREIGN KEY (AccountID) REFERENCES Accounts(AccountID)
+);
+
+INSERT INTO Transactions VALUES
+(1001, 101, '2024-06-10', 'Credit', 5000.00, 'Salary credited', 'NEFT', 'Success', 60000.75, 'SBI001'),
+(1002, 101, '2024-06-15', 'Debit', 2000.00, 'Mobile recharge', 'UPI', 'Success', 58000.75, 'SBI001'),
+(1003, 102, '2024-05-22', 'Debit', 1500.00, 'Electricity bill', 'Net Banking', 'Success', 123500.00, 'SBI002'),
+(1004, 103, '2024-07-01', 'Credit', 20000.00, 'Cheque deposit', 'Cheque', 'Success', 87000.00, 'SBI003'),
+(1005, 104, '2024-07-02', 'Debit', 500.00, 'ATM Withdrawal', 'ATM', 'Success', 88500.00, 'SBI004'),
+(1006, 105, '2024-06-20', 'Credit', 10000.00, 'UPI received', 'UPI', 'Success', 42000.00, 'SBI005'),
+(1007, 106, '2024-05-10', 'Debit', 1500.00, 'Online shopping', 'UPI', 'Success', 45500.90, 'SBI006'),
+(1008, 107, '2024-07-15', 'Debit', 2500.00, 'Fuel payment', 'Card', 'Success', 48500.50, 'SBI007'),
+(1009, 108, '2024-06-30', 'Credit', 7000.00, 'Client payment', 'IMPS', 'Success', 102000.00, 'SBI008'),
+(1010, 109, '2024-05-18', 'Debit', 1000.00, 'Recharge', 'UPI', 'Success', 21000.00, 'SBI009'),
+(1011, 110, '2024-07-05', 'Credit', 5000.00, 'Salary', 'NEFT', 'Success', 39000.00, 'SBI010'),
+(1012, 111, '2024-06-12', 'Debit', 2000.00, 'Shopping', 'UPI', 'Success', 76000.45, 'SBI011'),
+(1013, 112, '2024-05-25', 'Credit', 15000.00, 'Cheque', 'Cheque', 'Success', 140000.00, 'SBI012'),
+(1014, 113, '2024-06-07', 'Debit', 2000.00, 'Rent', 'NEFT', 'Success', 31000.00, 'SBI013'),
+(1015, 114, '2024-05-29', 'Debit', 1000.00, 'Petrol', 'UPI', 'Success', 58000.00, 'SBI014'),
+(1016, 115, '2024-07-18', 'Credit', 10000.00, 'Client Payment', 'IMPS', 'Success', 50500.00, 'SBI015'),
+(1017, 116, '2024-06-25', 'Debit', 500.00, 'Bill Payment', 'Net Banking', 'Success', 21500.00, 'SBI016'),
+(1018, 117, '2024-07-03', 'Credit', 12000.00, 'Cash Deposit', 'Cash', 'Success', 59000.50, 'SBI017'),
+(1019, 118, '2024-06-17', 'Debit', 1000.00, 'Restaurant', 'Card', 'Success', 109000.00, 'SBI018'),
+(1020, 119, '2024-07-21', 'Credit', 8000.00, 'Transfer from friend', 'UPI', 'Success', 64000.00, 'SBI019');
+
+-- Show all transactions
+SELECT * FROM Transactions;
+
+-- Remove all transaction records (preserves structure)
+TRUNCATE TABLE Transactions;
+
+-- Delete the Transactions table permanently
+DROP TABLE Transactions;
+
+-- DDL (Data Definition Language) – Queries 1–5
+-- 1. Create the Transactions table (already provided, listed for reference)
+CREATE TABLE Transactions (
+    TransactionID INT PRIMARY KEY,
+    AccountID INT,
+    TransactionDate DATE,
+    Type VARCHAR(10),
+    Amount DECIMAL(10,2),
+    Description TEXT,
+    Mode VARCHAR(20),
+    Status VARCHAR(10),
+    BalanceAfter DECIMAL(12,2),
+    BranchCode VARCHAR(10),
+    FOREIGN KEY (AccountID) REFERENCES Accounts(AccountID)
+);
+
+-- 2. Add a column for TransactionTime (for precise time logs)
+ALTER TABLE Transactions ADD TransactionTime TIME;
+
+-- 3. Modify Description column size
+ALTER TABLE Transactions MODIFY Description VARCHAR(255);
+
+-- 4. Rename column Mode to PaymentMode
+ALTER TABLE Transactions RENAME COLUMN Mode TO PaymentMode;
+
+-- 5. Drop column TransactionTime (cleanup)
+ALTER TABLE Transactions DROP COLUMN TransactionTime;
+
+-- 6. Insert a new transaction
+INSERT INTO Transactions VALUES 
+(1021, 120, '2024-07-29', 'Debit', 2000.00, 'Online Course Payment', 'Net Banking', 'Success', 41250.50, 'SBI020');
+
+-- 7. Update status of a failed transaction
+UPDATE Transactions SET Status = 'Success' WHERE TransactionID = 1015;
+
+-- 8. Delete a transaction that was logged twice
+DELETE FROM Transactions WHERE TransactionID = 1021;
+
+-- 9. Increase amount by 10% for all UPI transactions for cashback tracking
+UPDATE Transactions SET Amount = Amount * 1.10 WHERE PaymentMode = 'UPI';
+
+-- 10. Set 'Pending' status for all transactions above ₹20,000 (simulation)
+UPDATE Transactions SET Status = 'Pending' WHERE Amount > 20000;
+
+-- 11. Retrieve all transactions
+SELECT * FROM Transactions;
+
+-- 12. List all Debit transactions
+SELECT * FROM Transactions WHERE Type = 'Debit';
+
+-- 13. Find transactions made on a specific date
+SELECT * FROM Transactions WHERE TransactionDate = '2024-07-01';
+
+-- 14. Total credited amount in SBI001 branch
+SELECT SUM(Amount) AS TotalCredited FROM Transactions 
+WHERE Type = 'Credit' AND BranchCode = 'SBI001';
+
+-- 15. Count of transactions grouped by mode
+SELECT PaymentMode, COUNT(*) AS Total FROM Transactions GROUP BY PaymentMode;
+
+-- 16. Ensure Amount is always positive
+ALTER TABLE Transactions ADD CONSTRAINT chk_amount_positive CHECK (Amount > 0);
+
+-- 17. Add NOT NULL to Status column
+ALTER TABLE Transactions MODIFY Status VARCHAR(10) NOT NULL;
+
+-- 18. Add UNIQUE constraint on TransactionID and Date (composite)
+ALTER TABLE Transactions ADD CONSTRAINT uniq_transaction UNIQUE (TransactionID, TransactionDate);
+
+-- 19. Check if any null BalanceAfter (data quality)
+SELECT * FROM Transactions WHERE BalanceAfter IS NULL;
+
+-- 20. Try inserting NULL in AccountID (should fail)
+-- INSERT INTO Transactions (TransactionID, AccountID, ...) VALUES (1022, NULL, ...) -- Should error if NOT NULL
+
+-- 21. ORDER BY amount descending
+SELECT * FROM Transactions ORDER BY Amount DESC;
+
+-- 22. GROUP BY BranchCode and count
+SELECT BranchCode, COUNT(*) AS TransactionCount FROM Transactions GROUP BY BranchCode;
+
+-- 23. HAVING clause – branches with more than 2 transactions
+SELECT BranchCode, COUNT(*) FROM Transactions GROUP BY BranchCode HAVING COUNT(*) > 2;
+
+-- 24. LIMIT 5 most recent transactions
+SELECT * FROM Transactions ORDER BY TransactionDate DESC LIMIT 5;
+
+-- 25. BETWEEN two dates
+SELECT * FROM Transactions WHERE TransactionDate BETWEEN '2024-06-01' AND '2024-07-15';
+
+-- 26. LIKE operator – find UPI-related descriptions
+SELECT * FROM Transactions WHERE Description LIKE '%UPI%';
+
+-- 27. IN operator – transactions from selected accounts
+SELECT * FROM Transactions WHERE AccountID IN (101, 102, 103);
+
+-- 28. NOT operator – exclude successful transactions
+SELECT * FROM Transactions WHERE NOT Status = 'Success';
+
+-- 29. IS NULL – check for incomplete descriptions
+SELECT * FROM Transactions WHERE Description IS NULL;
+
+-- 30. Combine AND/OR for filtering
+SELECT * FROM Transactions WHERE Type = 'Credit' AND Amount > 5000 OR PaymentMode = 'Cheque';
+
+-- 31. INNER JOIN Transactions with Accounts
+SELECT t.TransactionID, a.AccountType, t.Amount
+FROM Transactions t
+JOIN Accounts a ON t.AccountID = a.AccountID;
+
+-- 32. LEFT JOIN to get account info even if transaction is missing
+SELECT a.AccountID, t.TransactionID, t.Amount
+FROM Accounts a
+LEFT JOIN Transactions t ON a.AccountID = t.AccountID;
+
+-- 33. RIGHT JOIN (less common, used here for completeness)
+SELECT t.TransactionID, a.AccountID, a.Balance
+FROM Transactions t
+RIGHT JOIN Accounts a ON t.AccountID = a.AccountID;
+
+-- 34. CROSS JOIN example
+SELECT t.TransactionID, a.AccountType 
+FROM Transactions t
+CROSS JOIN Accounts a;
+
+-- 35. JOIN to get customer name for each transaction
+SELECT t.TransactionID, c.CustomerName, t.Amount
+FROM Transactions t
+JOIN Accounts a ON t.AccountID = a.AccountID
+JOIN Customers c ON a.CustomerID = c.CustomerID;
+
+-- 36. Use UPPER to standardize mode names
+SELECT UPPER(PaymentMode) AS ModeUpper FROM Transactions;
+
+-- 37. LENGTH of each description
+SELECT TransactionID, LENGTH(Description) AS DescLength FROM Transactions;
+
+-- 38. CONCAT transaction summary
+SELECT CONCAT(Type, ' of ₹', Amount, ' on ', TransactionDate) AS Summary FROM Transactions;
+
+-- 39. DATEDIFF between transaction date and today
+SELECT TransactionID, DATEDIFF(CURDATE(), TransactionDate) AS DaysAgo FROM Transactions;
+
+-- 40. ROUND amount to nearest 100
+SELECT TransactionID, ROUND(Amount, -2) AS Rounded FROM Transactions;
+
+-- 41. Transactions from account with highest balance
+SELECT * FROM Transactions 
+WHERE AccountID = (
+  SELECT AccountID FROM Accounts ORDER BY Balance DESC LIMIT 1
+);
+
+-- 42. Transactions above average amount
+SELECT * FROM Transactions 
+WHERE Amount > (SELECT AVG(Amount) FROM Transactions);
+
+-- 43. Accounts with more than 2 transactions
+SELECT AccountID FROM Transactions 
+GROUP BY AccountID HAVING COUNT(*) > 2;
+
+--  Window Functions – Queries 44–45
+-- 44. Rank transactions by amount within branch
+SELECT BranchCode, TransactionID, Amount,
+RANK() OVER (PARTITION BY BranchCode ORDER BY Amount DESC) AS RankWithinBranch
+FROM Transactions;
+
+-- 45. Running total of debit transactions by account
+SELECT AccountID, TransactionDate, Type, Amount,
+SUM(Amount) OVER (PARTITION BY AccountID ORDER BY TransactionDate) AS RunningTotal
+FROM Transactions
+WHERE Type = 'Debit';
+✅ Triggers – Queries 46–47
+sql
+Copy
+Edit
+-- 46. Trigger to log deleted transactions (assume Transaction_Log exists)
+CREATE TRIGGER log_transaction_delete
+BEFORE DELETE ON Transactions
+FOR EACH ROW
+INSERT INTO Transaction_Log (TransactionID, DeletedAt)
+VALUES (OLD.TransactionID, NOW());
+
+-- 47. Trigger to auto-uppercase payment mode
+CREATE TRIGGER uppercase_mode
+BEFORE INSERT ON Transactions
+FOR EACH ROW
+SET NEW.PaymentMode = UPPER(NEW.PaymentMode);
+✅ Stored Procedures – Queries 48–50
+sql
+Copy
+Edit
+-- 48. Procedure to get transaction by ID
+DELIMITER //
+CREATE PROCEDURE GetTransactionByID(IN tid INT)
+BEGIN
+  SELECT * FROM Transactions WHERE TransactionID = tid;
+END;
+//
+DELIMITER ;
+
+-- 49. Procedure to get total transactions for account
+DELIMITER //
+CREATE PROCEDURE CountTransactionsForAccount(IN acc_id INT)
+BEGIN
+  SELECT COUNT(*) FROM Transactions WHERE AccountID = acc_id;
+END;
+//
+DELIMITER ;
+
+-- 50. Procedure to insert a new transaction
+DELIMITER //
+CREATE PROCEDURE InsertTransaction(
+  IN tid INT, IN accid INT, IN tdate DATE, IN ttype VARCHAR(10),
+  IN amt DECIMAL(10,2), IN descr TEXT, IN mode VARCHAR(20),
+  IN stat VARCHAR(10), IN balafter DECIMAL(12,2), IN branch VARCHAR(10)
+)
+BEGIN
+  INSERT INTO Transactions VALUES (tid, accid, tdate, ttype, amt, descr, mode, stat, balafter, branch);
+END;
+//
+DELIMITER ;
+
+-- Table-4: Loans
+
+CREATE TABLE Loans (
+    LoanID INT PRIMARY KEY,
+    CustomerID INT,
+    LoanType VARCHAR(20),
+    Amount DECIMAL(12,2),
+    StartDate DATE,
+    TenureMonths INT,
+    InterestRate FLOAT,
+    EMI DECIMAL(10,2),
+    Status VARCHAR(10),
+    BranchCode VARCHAR(10),
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+INSERT INTO Loans VALUES
+(201, 1, 'Home', 2500000.00, '2023-01-01', 240, 7.5, 22345.67, 'Active', 'SBI001'),
+(202, 2, 'Car', 800000.00, '2023-05-10', 60, 9.2, 16543.00, 'Active', 'SBI002'),
+(203, 3, 'Personal', 200000.00, '2024-01-15', 36, 11.5, 6720.45, 'Active', 'SBI003'),
+(204, 4, 'Education', 400000.00, '2022-06-01', 48, 10.0, 10450.30, 'Active', 'SBI004'),
+(205, 5, 'Home', 1500000.00, '2023-04-20', 180, 8.0, 15400.00, 'Active', 'SBI005'),
+(206, 6, 'Car', 950000.00, '2022-03-01', 60, 9.5, 17250.20, 'Active', 'SBI006'),
+(207, 7, 'Business', 1200000.00, '2023-07-10', 84, 8.9, 19300.00, 'Active', 'SBI007'),
+(208, 8, 'Education', 350000.00, '2021-08-15', 48, 10.2, 9450.00, 'Active', 'SBI008'),
+(209, 9, 'Home', 1800000.00, '2023-09-01', 240, 7.0, 19800.50, 'Active', 'SBI009'),
+(210, 10, 'Car', 600000.00, '2022-02-20', 60, 9.1, 13450.00, 'Active', 'SBI010'),
+(211, 11, 'Personal', 250000.00, '2023-11-10', 36, 11.2, 7300.00, 'Active', 'SBI011'),
+(212, 12, 'Home', 3000000.00, '2022-12-12', 240, 6.9, 24500.00, 'Active', 'SBI012'),
+(213, 13, 'Education', 420000.00, '2023-05-01', 60, 10.4, 9900.00, 'Active', 'SBI013'),
+(214, 14, 'Car', 700000.00, '2021-10-10', 48, 9.3, 15000.00, 'Active', 'SBI014'),
+(215, 15, 'Home', 2200000.00, '2022-01-05', 240, 7.2, 21400.00, 'Active', 'SBI015'),
+(216, 16, 'Business', 1000000.00, '2022-06-25', 120, 8.8, 19500.00, 'Active', 'SBI016'),
+(217, 17, 'Personal', 300000.00, '2023-04-14', 36, 11.0, 8800.00, 'Active', 'SBI017'),
+(218, 18, 'Education', 250000.00, '2022-07-07', 48, 10.5, 7800.00, 'Active', 'SBI018'),
+(219, 19, 'Car', 850000.00, '2023-03-03', 60, 9.0, 15800.00, 'Active', 'SBI019'),
+(220, 20, 'Personal', 200000.00, '2024-03-20', 36, 11.5, 6720.45, 'Active', 'SBI020');
+
+-- List all home loans above ₹20 lakhs
+SELECT * FROM Loans;
+
+-- Clear all loan records
+TRUNCATE TABLE Loans;
+
+-- Delete the Loans table from database
+DROP TABLE Loans;
+
+-- 1. Retrieve all loans
+SELECT * FROM Loans;
+-- Documentation: Displays all records from the Loans table.
+
+-- 2. Get active loans
+SELECT * FROM Loans WHERE LoanStatus = 'Active';
+-- Documentation: Filters and shows only loans that are currently active.
+
+-- 3. Show loans with interest rate more than 10%
+SELECT * FROM Loans WHERE InterestRate > 10;
+-- Documentation: Filters loans having interest rate greater than 10%.
+
+-- 4. List loans expiring this year
+SELECT * FROM Loans WHERE YEAR(EndDate) = YEAR(CURDATE());
+-- Documentation: Shows loans whose end date is in the current year.
+
+-- 5. Get details of loans taken by a specific customer
+SELECT * FROM Loans WHERE CustomerID = 'CUST010';
+-- Documentation: Displays all loans associated with customer CUST010.
+
+
+-- 6. Total loan principal issued
+SELECT SUM(PrincipalAmount) AS TotalPrincipal FROM Loans;
+-- Documentation: Calculates the total sum of principal amounts of all loans.
+
+-- 7. Average interest rate for all loans
+SELECT AVG(InterestRate) AS AvgRate FROM Loans;
+-- Documentation: Finds the average interest rate across all loans.
+
+-- 8. Count of loans by status
+SELECT LoanStatus, COUNT(*) AS Count FROM Loans GROUP BY LoanStatus;
+-- Documentation: Groups and counts number of loans for each status type.
+
+-- 9. Maximum loan duration
+SELECT MAX(DurationMonths) AS MaxDuration FROM Loans;
+-- Documentation: Returns the highest duration (in months) among all loans.
+
+-- 10. Minimum interest rate for car loans
+SELECT MIN(InterestRate) AS MinCarRate FROM Loans WHERE LoanType = 'Car Loan';
+-- Documentation: Retrieves the lowest interest rate among all car loans.
+
+-- 11. Show loan amount with calculated total interest
+SELECT LoanID, PrincipalAmount, InterestRate, 
+       (PrincipalAmount * InterestRate * DurationMonths / 1200) AS TotalInterest
+FROM Loans;
+
+-- 12. Remaining months for active loans
+SELECT LoanID, DurationMonths, TIMESTAMPDIFF(MONTH, CURDATE(), EndDate) AS MonthsLeft
+FROM Loans WHERE LoanStatus = 'Active';
+
+-- 13. Top 5 highest principal loans
+SELECT * FROM Loans ORDER BY PrincipalAmount DESC LIMIT 5;
+
+-- 14. Loans between ₹100,000 and ₹500,000
+SELECT * FROM Loans WHERE PrincipalAmount BETWEEN 100000 AND 500000;
+-- Documentation: Filters loans within the specified principal amount range.
+
+-- 15. Search for loans with 'Home' in LoanType
+SELECT * FROM Loans WHERE LoanType LIKE '%Home%';
+-- Documentation: Returns loans where LoanType contains 'Home'.
+
+-- 16. Loans with principal greater than average
+SELECT * FROM Loans 
+WHERE PrincipalAmount > (SELECT AVG(PrincipalAmount) FROM Loans);
+-- Documentation: Lists loans with principal amounts above the average.
+
+-- 17. Customers who have more than one loan
+SELECT CustomerID FROM Loans GROUP BY CustomerID HAVING COUNT(*) > 1;
+-- Documentation: Identifies customers with multiple loans.
+
+-- 18. Latest loan issued
+SELECT * FROM Loans WHERE StartDate = (SELECT MAX(StartDate) FROM Loans);
+-- Documentation: Retrieves the loan with the most recent start date.
+
+
+-- 19. Join loans with customer details
+SELECT l.LoanID, c.CustomerName, l.LoanType, l.PrincipalAmount
+FROM Loans l
+JOIN Customers c ON l.CustomerID = c.CustomerID;
+-- Documentation: Combines Loans and Customers data for richer information.
+
+-- 20. Loans and branch info (Assuming Branches table exists and LoanID is linked)
+SELECT l.LoanID, l.PrincipalAmount, b.BranchName, b.City
+FROM Loans l
+JOIN Branches b ON l.LoanID = b.BranchCode;
+-- Documentation: Joins Loans with Branches using LoanID as BranchCode for example purpose.
+
+-- 21. Add a new column for EMI Amount
+ALTER TABLE Loans ADD EMIAmount DECIMAL(12,2);
+-- Documentation: Adds a new column to store monthly EMI in the Loans table.
+
+-- 22. Update EMI for all loans (example formula)
+UPDATE Loans SET EMIAmount = ROUND((PrincipalAmount + (PrincipalAmount * InterestRate * DurationMonths / 1200)) / DurationMonths, 2);
+-- Documentation: Calculates and stores EMI for each loan based on interest and duration.
+
+-- 23. Delete closed loans
+DELETE FROM Loans WHERE LoanStatus = 'Closed';
+-- Documentation: Removes loans that have been marked as closed.
+
+-- 24. Truncate Loans table
+TRUNCATE TABLE Loans;
+
+-- 25. Drop the Loans table
+DROP TABLE Loans;
+
+-- 26. Rank loans based on PrincipalAmount (highest to lowest)
+SELECT LoanID, CustomerID, PrincipalAmount,
+       RANK() OVER (ORDER BY PrincipalAmount DESC) AS RankByAmount
+FROM Loans;
+-- Documentation: Assigns a rank to each loan based on the principal amount.
+
+-- 27. Running total of principal amounts
+SELECT LoanID, PrincipalAmount,
+       SUM(PrincipalAmount) OVER (ORDER BY LoanID) AS RunningTotal
+FROM Loans;
+-- Documentation: Calculates a cumulative total of principal amounts in order.
+
+-- 28. Dense rank by interest rate
+SELECT LoanID, InterestRate,
+       DENSE_RANK() OVER (ORDER BY InterestRate DESC) AS DenseRank
+FROM Loans;
+-- Documentation: Applies DENSE_RANK() on interest rates (no gaps in ranks).
+
+-- 29. Average principal per LoanType using PARTITION
+SELECT LoanID, LoanType, PrincipalAmount,
+       AVG(PrincipalAmount) OVER (PARTITION BY LoanType) AS AvgLoanTypePrincipal
+FROM Loans;
+-- Documentation: Finds average principal for each loan type.
+
+-- 30. Percentage of total loan per customer
+SELECT CustomerID, SUM(PrincipalAmount) AS TotalLoan,
+       ROUND(100.0 * SUM(PrincipalAmount) / SUM(SUM(PrincipalAmount)) OVER (), 2) AS LoanPercentage
+FROM Loans
+GROUP BY CustomerID;
+-- Documentation: Calculates each customer's loan contribution as a % of all loans.
+
+-- 31. Create a view for all active loans with interest details
+CREATE VIEW ActiveLoanDetails AS
+SELECT LoanID, CustomerID, LoanType, PrincipalAmount, InterestRate, DurationMonths
+FROM Loans
+WHERE LoanStatus = 'Active';
+-- Documentation: Creates a virtual table (view) for active loan summary.
+
+-- 32. Query from the created view
+SELECT * FROM ActiveLoanDetails;
+-- Documentation: Retrieves all data from the ActiveLoanDetails view.
+
+-- 33. Create index on LoanStatus for faster filtering
+CREATE INDEX idx_LoanStatus ON Loans(LoanStatus);
+-- Documentation: Creates an index on the LoanStatus column to speed up WHERE filtering.
+
+-- 34. Drop the view
+DROP VIEW ActiveLoanDetails;
+-- Documentation: Removes the view from the database.
+
+-- 35. Drop the index on LoanStatus
+DROP INDEX idx_LoanStatus ON Loans;
+-- Documentation: Removes the index created earlier on LoanStatus.
+
+-- 36. Add a CHECK constraint to ensure interest rate is between 0 and 100
+ALTER TABLE Loans ADD CONSTRAINT chk_InterestRate CHECK (InterestRate BETWEEN 0 AND 100);
+-- Documentation: Ensures that interest rate remains within valid percentage limits.
+
+-- 37. Add a NOT NULL constraint on LoanType
+ALTER TABLE Loans MODIFY LoanType VARCHAR(50) NOT NULL;
+-- Documentation: Disallows null values in the LoanType field.
+
+-- 38. Add UNIQUE constraint on combination of CustomerID and LoanType
+ALTER TABLE Loans ADD CONSTRAINT unique_CustLoan UNIQUE (CustomerID, LoanType);
+-- Documentation: Ensures a customer can’t have duplicate loan types.
+
+-- 39. Add DEFAULT value for LoanStatus
+ALTER TABLE Loans MODIFY LoanStatus VARCHAR(20) DEFAULT 'Pending';
+-- Documentation: Sets default status as ‘Pending’ when not provided during insertion.
+
+-- 40. Add FOREIGN KEY for CustomerID (assuming Customers table exists)
+ALTER TABLE Loans
+ADD CONSTRAINT fk_Customer FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID);
+-- Documentation: Ensures referential integrity between Loans and Customers.
+
+-- 41. Create trigger to log insertion into Loans
+CREATE TRIGGER trg_after_loan_insert
+AFTER INSERT ON Loans
+FOR EACH ROW
+INSERT INTO LoanLog (LoanID, Action, ActionDate)
+VALUES (NEW.LoanID, 'INSERTED', NOW());
+-- Documentation: After a new loan is inserted, logs the action in LoanLog table.
+
+-- 42. Trigger to auto-update LoanStatus to 'Closed' if EndDate < today
+CREATE TRIGGER trg_check_loan_status
+BEFORE INSERT ON Loans
+FOR EACH ROW
+SET NEW.LoanStatus = IF(NEW.EndDate < CURDATE(), 'Closed', NEW.LoanStatus);
+-- Documentation: Automatically updates loan status to 'Closed' if the end date is in the past.
+
+-- 43. Create a LoanLog table for auditing (used in triggers above)
+CREATE TABLE LoanLog (
+    LogID INT AUTO_INCREMENT PRIMARY KEY,
+    LoanID INT,
+    Action VARCHAR(50),
+    ActionDate DATETIME
+);
+-- Documentation: Stores logs of loan-related actions (INSERT, UPDATE).
+
+-- 44. Trigger to capture loan deletions
+CREATE TRIGGER trg_before_loan_delete
+BEFORE DELETE ON Loans
+FOR EACH ROW
+INSERT INTO LoanLog (LoanID, Action, ActionDate)
+VALUES (OLD.LoanID, 'DELETED', NOW());
+-- Documentation: Before a loan is deleted, its info is backed up in LoanLog.
+
+-- 45. Drop a trigger
+DROP TRIGGER IF EXISTS trg_after_loan_insert;
+-- Documentation: Removes an existing trigger from the database.
+
+-- 46. Create procedure to fetch all loans for a given customer
+DELIMITER //
+CREATE PROCEDURE GetLoansByCustomer(IN custID VARCHAR(10))
+BEGIN
+  SELECT * FROM Loans WHERE CustomerID = custID;
+END //
+DELIMITER ;
+-- Documentation: A stored procedure to return all loans of a specified customer.
+
+-- 47. Call the procedure
+CALL GetLoansByCustomer('CUST005');
+-- Documentation: Executes the stored procedure with a specific customer ID.
+```
+
+```sql
+-- 48. Create procedure to add a new loan
+DELIMITER //
+CREATE PROCEDURE AddNewLoan(
+  IN custID VARCHAR(10), IN type VARCHAR(50), IN principal DECIMAL(12,2),
+  IN rate DECIMAL(5,2), IN duration INT, IN start DATE, IN endDate DATE,
+  IN collateral VARCHAR(100)
+)
+BEGIN
+  INSERT INTO Loans (CustomerID, LoanType, PrincipalAmount, InterestRate,
+                     DurationMonths, StartDate, EndDate, Collateral)
+  VALUES (custID, type, principal, rate, duration, start, endDate, collateral);
+END //
+DELIMITER ;
+-- Documentation: Stored procedure to insert a new loan entry.
+
+-- 49. Execute the loan insertion procedure
+CALL AddNewLoan('CUST006', 'Education Loan', 500000, 10.5, 48, '2024-01-01', '2028-01-01', 'Degree Certificate');
+-- Documentation: Inserts a new loan using the AddNewLoan procedure.
+
+-- 50. Drop the procedure
+DROP PROCEDURE IF EXISTS GetLoansByCustomer;
+-- Documentation: Deletes the stored procedure from the database.
+
+--  Table-5: Branches
+
+CREATE TABLE Branches (
+    BranchCode VARCHAR(10) PRIMARY KEY,
+    BranchName VARCHAR(100),
+    IFSCCode VARCHAR(11),
+    MICRCode VARCHAR(10),
+    Address TEXT,
+    City VARCHAR(50),
+    State VARCHAR(50),
+    Contact VARCHAR(15),
+    ManagerName VARCHAR(100),
+    WorkingHours VARCHAR(50)
+);
+
+INSERT INTO Branches VALUES
+('SBI001', 'SBI Delhi Main Branch', 'SBIN000001', '110002001', 'Connaught Place, Delhi', 'Delhi', 'Delhi', '01123456789', 'Rajeev Khanna', '9 AM - 4 PM'),
+('SBI002', 'SBI Mumbai West Branch', 'SBIN000002', '400002002', 'Bandra, Mumbai', 'Mumbai', 'Maharashtra', '02245678901', 'Sonal Rane', '9 AM - 4 PM'),
+('SBI003', 'SBI Kolkata Branch', 'SBIN000003', '700002003', 'Salt Lake, Kolkata', 'Kolkata', 'West Bengal', '03312345678', 'Rakesh Roy', '9 AM - 4 PM'),
+('SBI004', 'SBI Chennai Branch', 'SBIN000004', '600002004', 'T Nagar, Chennai', 'Chennai', 'Tamil Nadu', '04423456789', 'Meena Nair', '9 AM - 4 PM'),
+('SBI005', 'SBI Bangalore Branch', 'SBIN000005', '560002005', 'MG Road, Bangalore', 'Bangalore', 'Karnataka', '08034567891', 'Anil Sinha', '9 AM - 4 PM'),
+('SBI006', 'SBI Hyderabad Branch', 'SBIN000006', '500002006', 'Banjara Hills, Hyderabad', 'Hyderabad', 'Telangana', '04067891234', 'Preeti Rao', '9 AM - 4 PM'),
+('SBI007', 'SBI Ahmedabad Branch', 'SBIN000007', '380002007', 'Navrangpura, Ahmedabad', 'Ahmedabad', 'Gujarat', '07945678912', 'Karan Patel', '9 AM - 4 PM'),
+('SBI008', 'SBI Surat Branch', 'SBIN000008', '395002008', 'Ring Road, Surat', 'Surat', 'Gujarat', '02612345678', 'Anjali Desai', '9 AM - 4 PM'),
+('SBI009', 'SBI Jaipur Branch', 'SBIN000009', '302002009', 'MI Road, Jaipur', 'Jaipur', 'Rajasthan', '01414567890', 'Ravi Sharma', '9 AM - 4 PM'),
+('SBI010', 'SBI Bhopal Branch', 'SBIN000010', '462002010', 'New Market, Bhopal', 'Bhopal', 'Madhya Pradesh', '07552678901', 'Neha Joshi', '9 AM - 4 PM'),
+('SBI011', 'SBI Lucknow Branch', 'SBIN000011', '226002011', 'Hazratganj, Lucknow', 'Lucknow', 'Uttar Pradesh', '05221234567', 'Saurabh Pandey', '9 AM - 4 PM'),
+('SBI012', 'SBI Kanpur Branch', 'SBIN000012', '208002012', 'Mall Road, Kanpur', 'Kanpur', 'Uttar Pradesh', '05122345678', 'Anita Yadav', '9 AM - 4 PM'),
+('SBI013', 'SBI Nagpur Branch', 'SBIN000013', '440002013', 'Sitabuldi, Nagpur', 'Nagpur', 'Maharashtra', '07122456789', 'Manoj Deshmukh', '9 AM - 4 PM'),
+('SBI014', 'SBI Amritsar Branch', 'SBIN000014', '143002014', 'GT Road, Amritsar', 'Amritsar', 'Punjab', '01832456789', 'Gurpreet Singh', '9 AM - 4 PM'),
+('SBI015', 'SBI Guwahati Branch', 'SBIN000015', '781002015', 'Zoo Road, Guwahati', 'Guwahati', 'Assam', '03612456789', 'Bipin Choudhary', '9 AM - 4 PM'),
+('SBI016', 'SBI Indore Branch', 'SBIN000016', '452002016', 'Rajwada, Indore', 'Indore', 'Madhya Pradesh', '07312456789', 'Isha Tripathi', '9 AM - 4 PM'),
+('SBI017', 'SBI Kota Branch', 'SBIN000017', '324002017', 'Chambal Road, Kota', 'Kota', 'Rajasthan', '07442456789', 'Deepak Verma', '9 AM - 4 PM'),
+('SBI018', 'SBI Raipur Branch', 'SBIN000018', '492002018', 'Pandri, Raipur', 'Raipur', 'Chhattisgarh', '07712456789', 'Shweta Chauhan', '9 AM - 4 PM'),
+('SBI019', 'SBI Agra Branch', 'SBIN000019', '282002019', 'Sadar Bazar, Agra', 'Agra', 'Uttar Pradesh', '05622456789', 'Abhay Dixit', '9 AM - 4 PM'),
+('SBI020', 'SBI Pune Branch', 'SBIN000020', '411002020', 'Kalyani Nagar, Pune', 'Pune', 'Maharashtra', '02024567890', 'Ajay Pawar', '9 AM - 4 PM');
+
+-- View all branches located in Maharashtra
+SELECT * FROM Branches;
+
+-- Remove all records from Branches
+TRUNCATE TABLE Branches;
+
+-- Drop the entire Branches table
+DROP TABLE Branches;
+
+-- Query 1: Basic SELECT**
+SELECT * FROM Loans;
+
+-- Query 2: SELECT with WHERE Clause**
+SELECT LoanID, Amount, Status
+FROM Loans
+WHERE Status = 'Approved';
+
+-- Query 3: SELECT with ORDER BY
+SELECT LoanID, CustomerID, Amount
+FROM Loans
+ORDER BY Amount DESC;
+
+   -- Query 4: SELECT with BETWEEN Clause
+SELECT LoanID, Amount
+FROM Loans
+WHERE Amount BETWEEN 50000 AND 150000;
+
+-- 5
+SELECT *
+FROM Loans
+WHERE LoanType LIKE '%Home%';
+
+-- Query 6: SELECT with IN Clause**
+SELECT LoanID, Amount
+FROM Loans
+WHERE BranchCode IN ('SBI001', 'SBI003');
+
+--  Query 7: SELECT with IS NULL Check**
+SELECT LoanID, EndDate
+FROM Loans
+WHERE EndDate IS NULL;
+-- Query 8: SELECT using Aggregate Function (SUM)**
+SELECT BranchCode, SUM(Amount) AS TotalLoanAmount
+FROM Loans
+GROUP BY BranchCode;
+
+-- Query 9: SELECT with GROUP BY and HAVING**
+SELECT LoanType, COUNT(*) AS TotalLoans
+FROM Loans
+GROUP BY LoanType
+HAVING COUNT(*) > 2;
+
+-- Query 10: SELECT using Nested Subquery**
+SELECT *
+FROM Loans
+WHERE Amount = (SELECT MAX(Amount) FROM Loans);
+
+-- Query 11: INNER JOIN with Customers table
+SELECT L.LoanID, C.CustomerName, L.Amount
+FROM Loans L
+INNER JOIN Customers C ON L.CustomerID = C.CustomerID;
+
+-- Query 12: LEFT JOIN with Branches
+SELECT L.LoanID, B.BranchName
+FROM Loans L
+LEFT JOIN Branches B ON L.BranchCode = B.BranchCode;
+
+-- Query 13: UPDATE Loan Status**
+UPDATE Loans
+SET Status = 'Closed'
+WHERE EndDate < CURRENT_DATE;
+
+DELETE FROM Loans
+WHERE Status = 'Rejected';
+
+-- Query 15: Add new column using ALTER**
+ALTER TABLE Loans ADD LastModified DATETIME DEFAULT CURRENT_TIMESTAMP;
+
+-- Query 16: Constraint violation simulation**
+-- This will fail if Amount is declared as NOT NULL
+INSERT INTO Loans (LoanID, CustomerID) VALUES (21, 105);
+
+-- Query 17: CASE statement usage**
+SELECT LoanID, Amount,
+  CASE 
+    WHEN Amount > 100000 THEN 'High'
+    WHEN Amount BETWEEN 50000 AND 100000 THEN 'Medium'
+    ELSE 'Low'
+  END AS LoanCategory
+FROM Loans;
+
+-- Query 18: CREATE VIEW for active loans**
+CREATE VIEW ActiveLoans AS
+SELECT * FROM Loans WHERE Status = 'Approved';
+-- Query 19: SELECT from view**
+SELECT LoanID, Amount FROM ActiveLoans;
+-- Query 20: DISTINCT usage**
+SELECT DISTINCT LoanType FROM Loans;
+
+ -- Query 21: Subquery with EXISTS**
+SELECT LoanID, Amount
+FROM Loans L
+WHERE EXISTS (
+  SELECT 1 FROM Customers C WHERE C.CustomerID = L.CustomerID AND C.City = 'Pune'
+);
+-- Query 22: Subquery in SELECT*
+SELECT LoanID, Amount,
+  (SELECT BranchName FROM Branches WHERE BranchCode = L.BranchCode) AS BranchName
+FROM Loans L;
+
+-- Query 23: Find longest duration loan**
+SELECT * FROM Loans
+WHERE DurationMonths = (SELECT MAX(DurationMonths) FROM Loans);
+
+-- Query 24: COUNT and GROUP BY with ORDER**
+SELECT BranchCode, COUNT(*) AS TotalLoans
+FROM Loans
+GROUP BY BranchCode
+ORDER BY TotalLoans DESC;
+
+-- Query 25: TRUNCATE Table**
+TRUNCATE TABLE Loans;
+
+-- Query 26: DROP Table**
+DROP TABLE Loans;
+
+
+-- Query 28: Call UDF to compute EMI**
+SELECT LoanID, dbo.CalculateEMI(Amount, InterestRate/1200, DurationMonths) AS EMI
+FROM Loans;
+
+-- Query 30: CTE for average loan**
+WITH AvgLoan AS (
+  SELECT AVG(Amount) AS AvgAmt FROM Loans
+)
+SELECT * FROM Loans
+WHERE Amount > (SELECT AvgAmt FROM AvgLoan);
+
+-- Query 31: WINDOW FUNCTION – RANK()**
+SELECT LoanID, Amount,
+  RANK() OVER (ORDER BY Amount DESC) AS LoanRank
+FROM Loans;
+
+-- 32: WINDOW FUNCTION – PARTITION BY**
+SELECT LoanID, BranchCode, Amount,
+  RANK() OVER (PARTITION BY BranchCode ORDER BY Amount DESC) AS BranchWiseRank
+FROM Loans;
+
+-- **Query 33: UNION of two queries**
+SELECT LoanID, Amount FROM Loans WHERE Status = 'Approved'
+UNION
+SELECT LoanID, Amount FROM Loans WHERE Status = 'Pending';
+
+-- Query 36: Nested Subquery with Aggregation**
+SELECT LoanType, AVG(Amount) AS AvgAmt
+FROM Loans
+GROUP BY LoanType
+HAVING AVG(Amount) > (SELECT AVG(Amount) FROM Loans);
+
+-- Query 37: DATE DIFF calculation**
+SELECT LoanID, DATEDIFF(MONTH, StartDate, EndDate) AS DurationCalc
+FROM Loans;
+
+-- **Query 38: FIND loans ending this month**
+SELECT * FROM Loans
+WHERE MONTH(EndDate) = MONTH(CURRENT_DATE) AND YEAR(EndDate) = YEAR(CURRENT_DATE);
+
+-- Query 39: CASE inside ORDER BY**
+SELECT LoanID, LoanType, Status
+FROM Loans
+ORDER BY CASE WHEN Status = 'Approved' THEN 1 ELSE 2 END;
+
+-- Query 40: ROUND and FORMAT usage**
+SELECT LoanID, ROUND(Amount, 0) AS RoundedAmount,
+FORMAT(InterestRate, 2) AS InterestRateFormatted
+FROM Loans;
+-- Query 41: COUNT loans per status**
+SELECT Status, COUNT(*) AS Total
+FROM Loans
+GROUP BY Status;
+-- Query 42: Coalesce for missing data**
+SELECT LoanID, COALESCE(EndDate, 'Still Active') AS LoanEnd
+FROM Loans;
+
+-- Query 43: Insert a new loan**
+INSERT INTO Loans (LoanID, CustomerID, BranchCode, LoanType, Amount, InterestRate, StartDate, EndDate, DurationMonths, Status)
+VALUES (21, 108, 'SBI005', 'Car', 300000, 9.5, '2025-07-01', '2030-07-01', 60, 'Approved');
+
+-- Query 44: COMMIT a transaction**
+BEGIN;
+UPDATE Loans SET Amount = Amount + 10000 WHERE LoanID = 5;
+COMMIT;
+
+-- Query 45: ROLLBACK a transaction**
+BEGIN;
+DELETE FROM Loans WHERE LoanID = 5;
+ROLLBACK;
+
+-- Query 46: CASE + Grouping**
+SELECT
+  CASE
+    WHEN InterestRate > 10 THEN 'High Interest'
+    ELSE 'Normal Interest'
+  END AS InterestCategory,
+  COUNT(*) AS LoanCount
+FROM Loans
+GROUP BY
+  CASE
+    WHEN InterestRate > 10 THEN 'High Interest'
+    ELSE 'Normal Interest'
+  END;
+-- **Query 47: Renaming table*
+ALTER TABLE Loans RENAME TO LoanDetails;
+
+-- **Query 48: Add check constraint**
+ALTER TABLE Loans
+ADD CONSTRAINT chk_loan_amount CHECK (Amount >= 10000);
+
+-- **Query 49: Check interest rate average by branch**
+SELECT BranchCode, AVG(InterestRate) AS AvgRate
+FROM Loans
+GROUP BY BranchCode;
+
+-- Query 50: DROP VIEW created earlier**
+DROP VIEW ActiveLoans;
 
