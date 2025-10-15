@@ -1,1 +1,65 @@
+/*
+Database - University
 
+-- 1. create database university
+-- 2. do proper analysis to organize data properly
+-- 3. there must be 5 tables within minimum 5 attributes, insert 5 records. 
+-- 4. do properdocumentation. 
+-- 5. analyze table data & write situation based condition queries-
+      1. create,insert,select,truncate,drop,
+	  2.select queries {20}
+      3.alter queries {20}
+      4.update queries {20}
+      5.delete queries {20}
+*/
+
+-- --------------------------------------------------- Analysis of Database ------------------------------------------------
+/*
+Database Name --> University
+
+Tables -->
+
+1. 
+2.
+3.
+4.
+5.
+*/
+   
+   -- ---------------------------------------- Database queries ---------------------------------------------------------
+   
+-- create a university database
+create database University;
+
+-- to work on database, you need to use it first
+use University;
+
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Age INT,
+    phone VARCHAR(50),
+    Year INT
+);
+
+insert into Students
+values
+(1, 'Alice Smith', 20, '12344', 2024),
+(2, 'Bob Johnson', 22, '98765', 2023),
+(3, 'Carol Davis', 19, '45627', 2025),
+(4, 'David Lee', 21, '09876', 2022),
+(5, 'Eva Brown', 20, '99876', 2021),
+(6, 'Frank Harris', 23, '22345',2025),
+(7, 'Grace Clark', 22, '16789', 2024),
+(8, 'Hank Lewis', 21, '98876', 2025),
+(9, 'Ivy Walker', 20, '88997', 2022),
+(10, 'Jake Hall', 24, '44566', 2024);
+
+-- to display table data
+select * from Students;
+
+-- to remove complete records from table
+truncate table Students;
+
+-- to remove complete records & attributes from table
+drop table Students;
