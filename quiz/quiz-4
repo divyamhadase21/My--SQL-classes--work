@@ -1,1 +1,189 @@
 
+
+-- Table 1: ForestZones
+CREATE TABLE ForestZones (
+    id INT PRIMARY KEY,
+    name VARCHAR(100),
+    location VARCHAR(100),
+    area_sq_km FLOAT,
+    zone_type VARCHAR(50),
+    established_date DATE,
+    status VARCHAR(20),
+    description TEXT,
+    created_at DATETIME,
+    updated_at DATETIME
+);
+
+-- Insert 20 sample records 
+INSERT INTO ForestZones (id, name, location, area_sq_km, zone_type, established_date, status, description, created_at, updated_at) VALUES
+(1, 'Sundarbans Reserve', 'West Bengal', 4260.0, 'Biosphere Reserve', '1989-03-01', 'Active', 'Largest mangrove forest and tiger habitat.', NOW(), NOW()),
+(2, 'Gir Forest', 'Gujarat', 1412.0, 'Wildlife Sanctuary', '1965-05-01', 'Active', 'Last home of the Asiatic lions.', NOW(), NOW()),
+(3, 'Kanha Zone', 'Madhya Pradesh', 940.0, 'National Park', '1955-06-01', 'Active', 'Famous for barasingha conservation.', NOW(), NOW()),
+(4, 'Silent Valley', 'Kerala', 237.5, 'National Park', '1984-11-15', 'Active', 'Pristine evergreen tropical forest.', NOW(), NOW()),
+(5, 'Jim Corbett Zone', 'Uttarakhand', 520.8, 'Tiger Reserve', '1936-08-08', 'Active', 'India’s oldest national park.', NOW(), NOW()),
+(6, 'Kaziranga Zone', 'Assam', 430.0, 'Wildlife Sanctuary', '1974-02-01', 'Active', 'Known for one-horned rhinoceroses.', NOW(), NOW()),
+(7, 'Periyar Forest', 'Kerala', 925.0, 'Tiger Reserve', '1982-01-15', 'Active', 'Major elephant habitat.', NOW(), NOW()),
+(8, 'Bandipur Reserve', 'Karnataka', 874.2, 'National Park', '1974-03-10', 'Active', 'Part of Nilgiri Biosphere Reserve.', NOW(), NOW()),
+(9, 'Nagarhole Zone', 'Karnataka', 643.4, 'National Park', '1988-07-01', 'Active', 'Rich in flora and fauna diversity.', NOW(), NOW()),
+(10, 'Sariska Zone', 'Rajasthan', 881.0, 'Tiger Reserve', '1978-04-01', 'Active', 'Dry deciduous forest and tiger habitat.', NOW(), NOW()),
+(11, 'Bhadra Forest', 'Karnataka', 492.5, 'Wildlife Sanctuary', '1998-09-15', 'Active', 'Tiger and elephant corridor area.', NOW(), NOW()),
+(12, 'Palamau Forest', 'Jharkhand', 1129.0, 'Tiger Reserve', '1973-10-02', 'Inactive', 'One of the earliest tiger reserves, now under revival.', NOW(), NOW()),
+(13, 'Namdapha Zone', 'Arunachal Pradesh', 1985.0, 'National Park', '1983-05-12', 'Active', 'Eastern Himalayas biodiversity hotspot.', NOW(), NOW()),
+(14, 'Anamalai Hills', 'Tamil Nadu', 958.6, 'Biosphere Reserve', '2003-06-05', 'Active', 'Part of Western Ghats ecosystem.', NOW(), NOW()),
+(15, 'Melghat Zone', 'Maharashtra', 1676.0, 'Tiger Reserve', '1973-02-01', 'Active', 'One of the first nine tiger reserves in India.', NOW(), NOW()),
+(16, 'Dudhwa National Park', 'Uttar Pradesh', 490.3, 'National Park', '1977-03-01', 'Active', 'Important swamp deer and tiger habitat.', NOW(), NOW()),
+(17, 'Simlipal Forest', 'Odisha', 2750.0, 'Biosphere Reserve', '1986-06-01', 'Active', 'Tiger reserve with rich medicinal flora.', NOW(), NOW()),
+(18, 'Satpura Range Forest', 'Madhya Pradesh', 1427.0, 'Tiger Reserve', '2000-10-01', 'Active', 'Hilly terrain and dense forest cover.', NOW(), NOW()),
+(19, 'Bhitar Kanika', 'Odisha', 672.0, 'Mangrove Forest', '1975-01-15', 'Active', 'Second largest mangrove ecosystem after Sundarbans.', NOW(), NOW()),
+(20, 'Koundinya Wildlife Sanctuary', 'Andhra Pradesh', 357.6, 'Wildlife Sanctuary', '1990-09-01', 'Active', 'Known for elephants and dry deciduous forests.', NOW(), NOW());
+
+
+-- Table 2: Staff
+CREATE TABLE Staff (
+    id INT PRIMARY KEY,
+    name VARCHAR(100),
+    designation VARCHAR(50),
+    department VARCHAR(50),
+    location VARCHAR(100),
+    contact VARCHAR(20),
+    email VARCHAR(100),
+    status VARCHAR(20),
+    created_at DATETIME,
+    updated_at DATETIME
+);
+
+-- Insert 20 sample records 
+INSERT INTO Staff (id, name, designation, department, location, contact, email, status, created_at, updated_at) VALUES
+(1, 'Rajesh Verma', 'Forest Officer', 'Surveillance', 'Nagpur', '9876543210', 'rajesh.verma@forest.gov.in', 'Active', NOW(), NOW()),
+(2, 'Sneha Patil', 'Botanist', 'Research', 'Pune', '8765432109', 'sneha.patil@forest.gov.in', 'Active', NOW(), NOW()),
+(3, 'Amit Kale', 'Guard', 'Protection', 'Gadchiroli', '7654321098', 'amit.kale@forest.gov.in', 'Active', NOW(), NOW()),
+(4, 'Priya Joshi', 'Wildlife Expert', 'Conservation', 'Nashik', '6543210987', 'priya.joshi@forest.gov.in', 'Active', NOW(), NOW()),
+(5, 'Kiran Deshmukh', 'Range Officer', 'Management', 'Chandrapur', '5432109876', 'kiran.deshmukh@forest.gov.in', 'Active', NOW(), NOW()),
+(6, 'Ravi Sharma', 'Veterinary Officer', 'Wildlife', 'Nagpur', '4321098765', 'ravi.sharma@forest.gov.in', 'Active', NOW(), NOW()),
+(7, 'Anjali Nair', 'Zoologist', 'Research', 'Mumbai', '3210987654', 'anjali.nair@forest.gov.in', 'Active', NOW(), NOW()),
+(8, 'Manish Tiwari', 'GIS Analyst', 'Survey', 'Bhopal', '2109876543', 'manish.tiwari@forest.gov.in', 'Active', NOW(), NOW()),
+(9, 'Neha Kulkarni', 'Accountant', 'Finance', 'Pune', '1098765432', 'neha.kulkarni@forest.gov.in', 'Active', NOW(), NOW()),
+(10, 'Arjun Singh', 'Clerk', 'Administration', 'Indore', '9988776655', 'arjun.singh@forest.gov.in', 'Active', NOW(), NOW()),
+(11, 'Divya Mishra', 'Legal Advisor', 'Compliance', 'Mumbai', '8877665544', 'divya.mishra@forest.gov.in', 'Active', NOW(), NOW()),
+(12, 'Suresh Pawar', 'Field Officer', 'Surveillance', 'Nagpur', '7766554433', 'suresh.pawar@forest.gov.in', 'Inactive', NOW(), NOW()),
+(13, 'Meena Rane', 'Deputy Director', 'Planning', 'Mumbai', '6655443322', 'meena.rane@forest.gov.in', 'Active', NOW(), NOW()),
+(14, 'Tushar Jadhav', 'Forest Surveyor', 'Mapping', 'Aurangabad', '5544332211', 'tushar.jadhav@forest.gov.in', 'Active', NOW(), NOW()),
+(15, 'Jyoti Salunke', 'Office Assistant', 'Admin', 'Kolhapur', '4433221100', 'jyoti.salunke@forest.gov.in', 'Active', NOW(), NOW()),
+(16, 'Nikhil Bhosale', 'HR Manager', 'Human Resources', 'Pune', '3322110099', 'nikhil.bhosale@forest.gov.in', 'Active', NOW(), NOW()),
+(17, 'Pooja Gokhale', 'Data Analyst', 'Monitoring', 'Nagpur', '2211009988', 'pooja.gokhale@forest.gov.in', 'Active', NOW(), NOW()),
+(18, 'Shubham Patil', 'Technician', 'Maintenance', 'Thane', '1100998877', 'shubham.patil@forest.gov.in', 'Inactive', NOW(), NOW()),
+(19, 'Swati Shinde', 'Environment Officer', 'Sustainability', 'Satara', '9099888776', 'swati.shinde@forest.gov.in', 'Active', NOW(), NOW()),
+(20, 'Rohan Sawant', 'Communication Officer', 'PR & Outreach', 'Ratnagiri', '8088777665', 'rohan.sawant@forest.gov.in', 'Active', NOW(), NOW());
+
+
+-- Table 3: WildlifeSpecies
+CREATE TABLE WildlifeSpecies (
+    id INT PRIMARY KEY,
+    name VARCHAR(100),
+    species_type VARCHAR(50),
+    conservation_status VARCHAR(50),
+    native_region VARCHAR(100),
+    population_estimate INT,
+    description TEXT,
+    status VARCHAR(20),
+    created_at DATETIME,
+    updated_at DATETIME
+);
+
+-- Insert 20 sample records 
+INSERT INTO WildlifeSpecies (id, name, species_type, conservation_status, native_region, population_estimate, description, status, created_at, updated_at) VALUES
+(1, 'Bengal Tiger', 'Mammal', 'Endangered', 'Sundarbans', 2967, 'The national animal of India, primarily found in mangrove and deciduous forests.', 'Active', NOW(), NOW()),
+(2, 'Indian Elephant', 'Mammal', 'Endangered', 'Western Ghats', 27000, 'Large herbivore critical to forest ecology.', 'Active', NOW(), NOW()),
+(3, 'Indian Peacock', 'Bird', 'Least Concern', 'Across India', 100000, 'The national bird of India, known for its colorful plumage.', 'Active', NOW(), NOW()),
+(4, 'Snow Leopard', 'Mammal', 'Vulnerable', 'Himalayas', 500, 'Elusive predator found in high altitudes.', 'Active', NOW(), NOW()),
+(5, 'Great Indian Bustard', 'Bird', 'Critically Endangered', 'Rajasthan, Gujarat', 150, 'One of the heaviest flying birds, at risk due to habitat loss.', 'Active', NOW(), NOW()),
+(6, 'Gharial', 'Reptile', 'Critically Endangered', 'Ganges River Basin', 900, 'Fish-eating crocodilian with a long snout.', 'Active', NOW(), NOW()),
+(7, 'Indian Pangolin', 'Mammal', 'Endangered', 'Central India', 3000, 'Nocturnal, scaly anteater threatened by illegal trade.', 'Active', NOW(), NOW()),
+(8, 'Asiatic Lion', 'Mammal', 'Endangered', 'Gir Forest, Gujarat', 674, 'Only wild population of lions outside Africa.', 'Active', NOW(), NOW()),
+(9, 'Indian Cobra', 'Reptile', 'Least Concern', 'Pan India', 50000, 'Venomous snake revered in Indian culture.', 'Active', NOW(), NOW()),
+(10, 'Olive Ridley Turtle', 'Reptile', 'Vulnerable', 'Odisha Coast', 100000, 'Known for mass nesting at Gahirmatha Beach.', 'Active', NOW(), NOW()),
+(11, 'Sloth Bear', 'Mammal', 'Vulnerable', 'Central & South India', 7000, 'Shaggy bear with long claws and insect diet.', 'Active', NOW(), NOW()),
+(12, 'Nilgiri Tahr', 'Mammal', 'Endangered', 'Western Ghats', 3200, 'Mountain goat endemic to Southern India.', 'Active', NOW(), NOW()),
+(13, 'Indian Star Tortoise', 'Reptile', 'Vulnerable', 'South India & Sri Lanka', 10000, 'Distinctive shell pattern, threatened by pet trade.', 'Active', NOW(), NOW()),
+(14, 'Lion-tailed Macaque', 'Mammal', 'Endangered', 'Western Ghats', 3000, 'Arboreal primate with a lion-like tail tuft.', 'Active', NOW(), NOW()),
+(15, 'Barasingha', 'Mammal', 'Vulnerable', 'Kanha National Park', 450, 'Also called swamp deer, lives in grasslands and wetlands.', 'Active', NOW(), NOW()),
+(16, 'Blackbuck', 'Mammal', 'Near Threatened', 'Rajasthan, Gujarat', 25000, 'Fastest land animal in India, known for twisting horns.', 'Active', NOW(), NOW()),
+(17, 'Indian Wolf', 'Mammal', 'Endangered', 'Central India', 2000, 'Subspecies of the gray wolf with fewer coat markings.', 'Active', NOW(), NOW()),
+(18, 'Indian Bison (Gaur)', 'Mammal', 'Vulnerable', 'Western & Central Ghats', 12000, 'Largest extant bovine species.', 'Active', NOW(), NOW()),
+(19, 'Hoolock Gibbon', 'Mammal', 'Endangered', 'North-East India', 2600, 'India’s only ape, known for loud calls.', 'Active', NOW(), NOW()),
+(20, 'Sarus Crane', 'Bird', 'Vulnerable', 'North India', 15000, 'Tallest flying bird, revered in Indian mythology.', 'Active', NOW(), NOW());
+
+-- Table 4: PatrolRecords
+CREATE TABLE PatrolRecords(
+    id INT PRIMARY KEY,
+    patrol_team VARCHAR(100),
+    date DATE,
+    area_covered VARCHAR(100),
+    incidents_reported TEXT,
+    status VARCHAR(20),
+    vehicle_used VARCHAR(50),
+    notes TEXT,
+    created_at DATETIME,
+    updated_at DATETIME
+);
+
+-- Insert 20 sample records 
+INSERT INTO PatrolRecords (id, patrol_team, date, area_covered, incidents_reported, status, vehicle_used, notes, created_at, updated_at) VALUES
+(1, 'Team Alpha', '2025-06-01', 'Zone A1 - Sundarbans', 'No incidents reported.', 'Completed', 'Jeep', 'Routine night patrol.', NOW(), NOW()),
+(2, 'Team Bravo', '2025-06-02', 'Zone B2 - Gir Forest', 'One illegal entry spotted.', 'Completed', 'Motorbike', 'Reported to HQ.', NOW(), NOW()),
+(3, 'Team Charlie', '2025-06-03', 'Zone C3 - Kanha', 'Evidence of poaching traps found.', 'Action Taken', 'Foot Patrol', 'Traps removed immediately.', NOW(), NOW()),
+(4, 'Team Delta', '2025-06-04', 'Zone D4 - Kaziranga', 'Rhino sighted near buffer zone.', 'Completed', 'Jeep', 'Animal movement logged.', NOW(), NOW()),
+(5, 'Team Echo', '2025-06-05', 'Zone E5 - Periyar', 'Signs of forest fire.', 'Investigated', 'Truck', 'Alert sent to fire team.', NOW(), NOW()),
+(6, 'Team Falcon', '2025-06-06', 'Zone F1 - Nagarhole', 'Illegal logging activity.', 'Action Taken', 'Jeep', 'Timber confiscated, FIR lodged.', NOW(), NOW()),
+(7, 'Team Gamma', '2025-06-07', 'Zone G2 - Bandipur', 'Elephant herd sighted.', 'Completed', 'Motorbike', 'Tracked for safety.', NOW(), NOW()),
+(8, 'Team Hawk', '2025-06-08', 'Zone H3 - Dudhwa', 'Suspicious campfire found.', 'Under Investigation', 'Foot Patrol', 'Sample collected for investigation.', NOW(), NOW()),
+(9, 'Team Iron', '2025-06-09', 'Zone I4 - Simlipal', 'Leopard movement near village.', 'Resolved', 'Jeep', 'Alert issued to village guards.', NOW(), NOW()),
+(10, 'Team Jaguar', '2025-06-10', 'Zone J5 - Melghat', 'No incidents.', 'Completed', 'Motorbike', 'Monsoon route cleared.', NOW(), NOW()),
+(11, 'Team Kilo', '2025-06-11', 'Zone K6 - Palamau', 'Road blocked by tree fall.', 'Cleared', 'Truck', 'Tree removed from path.', NOW(), NOW()),
+(12, 'Team Lima', '2025-06-12', 'Zone L7 - Bhadra', 'Signs of illegal fishing.', 'Reported', 'Boat', 'Details submitted to HQ.', NOW(), NOW()),
+(13, 'Team Mike', '2025-06-13', 'Zone M8 - Satpura', 'Animal carcass found.', 'Investigated', 'Foot Patrol', 'Possible natural death.', NOW(), NOW()),
+(14, 'Team Nova', '2025-06-14', 'Zone N9 - Anamalai', 'Damaged fencing observed.', 'Reported', 'Jeep', 'Maintenance team notified.', NOW(), NOW()),
+(15, 'Team Oscar', '2025-06-15', 'Zone O10 - Silent Valley', 'No activity.', 'Completed', 'Motorbike', 'Clear visibility during patrol.', NOW(), NOW()),
+(16, 'Team Panther', '2025-06-16', 'Zone P11 - Bhitar Kanika', 'Crocodile near human zone.', 'Resolved', 'Boat', 'Animal guided back to river.', NOW(), NOW()),
+(17, 'Team Quasar', '2025-06-17', 'Zone Q12 - Nilgiri Hills', 'New animal tracks.', 'Investigated', 'Jeep', 'Possible tiger movement.', NOW(), NOW()),
+(18, 'Team Ranger', '2025-06-18', 'Zone R13 - Koundinya', 'Fence breach.', 'Fixed', 'Foot Patrol', 'Temporary fix done.', NOW(), NOW()),
+(19, 'Team Sierra', '2025-06-19', 'Zone S14 - Namdapha', 'Bird nest disturbance.', 'Noted', 'Jeep', 'Awareness raised in nearby areas.', NOW(), NOW()),
+(20, 'Team Titan', '2025-06-20', 'Zone T15 - Sariska', 'Drone activity detected.', 'Reported', 'Jeep', 'Forwarded to cyber cell.', NOW(), NOW());
+
+
+-- Table 5: Incidents
+CREATE TABLE Incidents (
+    id INT PRIMARY KEY,
+    incident_type VARCHAR(50),
+    location VARCHAR(100),
+    date DATE,
+    reported_by VARCHAR(100),
+    description TEXT,
+    status VARCHAR(20),
+    action_taken TEXT,
+    created_at DATETIME,
+    updated_at DATETIME
+);
+
+-- Insert 20 sample records 
+INSERT INTO Incidents (id, incident_type, location, date, reported_by, description, status, action_taken, created_at, updated_at) VALUES
+(1, 'Poaching', 'Sundarbans Zone A1', '2025-06-01', 'Ravi Sharma', 'Dead deer found with bullet wound.', 'Investigated', 'FIR lodged, traps removed.', NOW(), NOW()),
+(2, 'Illegal Logging', 'Gir Forest Zone B2', '2025-06-03', 'Sneha Patil', 'Freshly cut teak logs discovered.', 'Action Taken', 'Logs seized, suspects questioned.', NOW(), NOW()),
+(3, 'Forest Fire', 'Kanha Zone C3', '2025-05-28', 'Rajesh Verma', 'Dry leaves caught fire in core area.', 'Resolved', 'Fire extinguished, firebreaks created.', NOW(), NOW()),
+(4, 'Wild Animal Sighting', 'Kaziranga Zone D4', '2025-06-05', 'Amit Kale', 'Tiger seen near buffer zone village.', 'Monitored', 'Alert issued to villagers.', NOW(), NOW()),
+(5, 'Fence Breach', 'Periyar Zone E5', '2025-06-07', 'Priya Joshi', 'Elephant damaged electric fence.', 'Fixed', 'Temporary fencing installed.', NOW(), NOW()),
+(6, 'Suspicious Activity', 'Nagarhole Zone F1', '2025-06-06', 'Kiran Deshmukh', 'Unidentified person seen with bags.', 'Under Investigation', 'Patrol team alerted.', NOW(), NOW()),
+(7, 'Injury to Animal', 'Bandipur Zone G2', '2025-06-04', 'Neha Kulkarni', 'Sambar deer limping in open area.', 'Treated', 'Veterinary team attended.', NOW(), NOW()),
+(8, 'Encroachment', 'Dudhwa Zone H3', '2025-06-02', 'Suresh Pawar', 'Farmer extended farm into forest.', 'Resolved', 'Boundary markers reinstalled.', NOW(), NOW()),
+(9, 'Dead Animal Found', 'Simlipal Zone I4', '2025-05-30', 'Anjali Nair', 'Carcass of leopard discovered.', 'Investigated', 'Sample sent for analysis.', NOW(), NOW()),
+(10, 'Drone Sighting', 'Melghat Zone J5', '2025-06-10', 'Rohan Sawant', 'Unauthorized drone flying over canopy.', 'Reported', 'Reported to cyber cell.', NOW(), NOW()),
+(11, 'Landslide', 'Palamau Zone K6', '2025-06-09', 'Tushar Jadhav', 'Trail blocked after heavy rain.', 'Cleared', 'Debris removed manually.', NOW(), NOW()),
+(12, 'Water Shortage', 'Bhadra Zone L7', '2025-06-08', 'Swati Shinde', 'Waterholes dried up in summer.', 'In Progress', 'Tankers deployed.', NOW(), NOW()),
+(13, 'Nest Disturbance', 'Satpura Zone M8', '2025-06-11', 'Pooja Gokhale', 'Bird nests found destroyed.', 'Monitored', 'Community educated on protection.', NOW(), NOW()),
+(14, 'Trapping Attempt', 'Anamalai Zone N9', '2025-06-12', 'Shubham Patil', 'Snares discovered on forest path.', 'Resolved', 'Traps confiscated, area patrolled.', NOW(), NOW()),
+(15, 'Tree Fall', 'Silent Valley Zone O10', '2025-06-13', 'Divya Mishra', 'Large tree collapsed on road.', 'Resolved', 'Cleared by forest maintenance team.', NOW(), NOW()),
+(16, 'Chemical Spill', 'Bhitar Kanika Zone P11', '2025-06-14', 'Manish Tiwari', 'Oily residue seen in river.', 'Investigated', 'Samples collected for testing.', NOW(), NOW()),
+(17, 'Animal Rescue', 'Nilgiri Hills Zone Q12', '2025-06-15', 'Arjun Singh', 'Porcupine trapped in fence.', 'Completed', 'Released safely to wild.', NOW(), NOW()),
+(18, 'Noise Disturbance', 'Koundinya Zone R13', '2025-06-16', 'Meena Rane', 'Loud music from nearby tourist camp.', 'Resolved', 'Warning issued to resort.', NOW(), NOW()),
+(19, 'Illegal Grazing', 'Namdapha Zone S14', '2025-06-17', 'Jyoti Salunke', 'Cattle found deep in forest area.', 'Warned', 'Herders fined and warned.', NOW(), NOW()),
+(20, 'Unauthorized Construction', 'Sariska Zone T15', '2025-06-18', 'Nikhil Bhosale', 'Concrete base found in protected zone.', 'Reported', 'Legal notice sent to offender.', NOW(), NOW());
