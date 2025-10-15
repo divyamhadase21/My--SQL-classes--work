@@ -1,5 +1,3 @@
-
-
 -- Table 1: ForestZones
 CREATE TABLE ForestZones (
     id INT PRIMARY KEY,
